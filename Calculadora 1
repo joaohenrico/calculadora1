@@ -1,0 +1,67 @@
+import java.util.Scanner;
+public class Calculadora1{
+    public static void main(String[] args){
+        Scanner scanner=new 
+            Scanner(System.in);
+        System.out.print("Digite o primeiro número:");
+         double num1 = obterNumero(scanner, "Digite o primeiro número: ");
+        char operacao = obterOperacao(scanner);
+        double num2 = obterNumero(scanner, "Digite o segundo número: ");
+
+        double resultado = calcular(num1, operacao, num2);
+
+        System.out.println("Resultado: " + resultado);
+    }
+
+    private static double obterNumero(Scanner scanner, String mensagem) {
+        System.out.print(mensagem);
+        return scanner.nextDouble();
+    }
+
+    private static char obterOperacao(Scanner scanner) {
+        System.out.print("Digite a operação (+, -, *, /): ");
+        return scanner.next().charAt(0);
+    }
+
+    private static double calcular(double num1, char operacao, double num2) {
+        double resultado;
+
+        switch (operacao) {
+            case '+':
+                resultado = adicionar(num1, num2);
+                break;
+            case '-':
+                resultado = subtrair(num1, num2);
+                break;
+            case '*':
+                resultado = multiplicar(num1, num2);
+                break;
+            case '/':
+                resultado = dividir(num1, num2);
+                break;
+            default:
+                throw new IllegalArgumentException("Erro: Operação inválida!");
+        }
+
+        return resultado;
+    }
+
+    private static double adicionar(double a, double b) {
+        return a + b;
+    }
+
+    private static double subtrair(double a, double b) {
+        return a - b;
+    }
+
+    private static double multiplicar(double a, double b) {
+        return a * b;
+    }
+
+    private static double dividir(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Erro: Divisão por zero!");
+        }
+        return a / b;
+    }
+}
